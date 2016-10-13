@@ -1,8 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// written nicely :) lol
-
 struct Node {
 	int info;
 	Node *next;
