@@ -15,6 +15,7 @@ Stack(){
 top=NULL;
 }
 void display();
+void peek();
 void push(int);
 void pop();
 };
@@ -42,6 +43,9 @@ cout<<current->info<<"->";
 current=current->next;
 }
 }
+void Stack::peek(){
+cout<<top->info;    
+}
 void main()
 {
 clrscr();
@@ -50,7 +54,7 @@ char con;
 Stack s;
 do{
 cout<<"MENU:\n";
-cout<<"\t1.PUSH\n"<<"\t2.POP\n"<<"\t3.DISPLAY\n"<<"Enter your choice : ";
+cout<<"\t1.PUSH\n"<<"\t2.POP\n"<<"\t3.DISPLAY\n"<<"\t4.PEEK"<<"Enter your choice : ";
 cin>>ch;
 switch(ch){
 case 1:
@@ -66,6 +70,10 @@ case 3:
 cout<<"The stack is : ";
 s.display();
 break;
+case 4:
+cout<<"The top element is : ";    
+s.peek();    
+break;    
 default:
 cout<<"Wrong choice entered!!";
 }
