@@ -19,10 +19,10 @@ class BinaryTree {
     	BinaryTree() {
 	    root = NULL;
 	}
-	void level_order_traversal();
-	void pre_order_traversal();
-	void in_order_traversal();
-	void post_order_traversal();
+	void level_order_traversal();         // basically BFS
+	void pre_order_traversal(Node*);      // basically DFS  
+	void in_order_traversal(Node*);       // basically DFS
+	void post_order_traversal(Node*);     // basically DFS
 };
 
 class Extra {
@@ -69,16 +69,31 @@ void BinaryTree :: level_order_traversal() {
     }
 }
 
-void BinaryTree :: pre_order_traversal() {
-
+void BinaryTree :: pre_order_traversal (Node *curr_root) {
+    if (curr_root == NULL) {
+        return;
+    }
+    cout << curr_root -> info << " ";
+    pre_order_traversal (curr_root -> lc);
+    pre_order_traversal (curr_root -> rc);
 }
 
-void BinaryTree :: in_order_traversal() {
-
+void BinaryTree :: in_order_traversal (Node* curr_root) {
+    if (curr_root == NULL) {
+        return;
+    }
+    in_order_traversal (curr_root -> lc);
+    cout << curr_root -> info << " ";
+    in_order_traversal (curr_root -> rc);
 }
 
-void BinaryTree :: post_order_traversal(){
-
+void BinaryTree :: post_order_traversal (Node* curr_root){
+    if (curr_root == NULL) {
+        return;
+    }
+    post_order_traversal (curr_root -> lc);
+    post_order_traversal (curr_root -> rc);
+    cout << curr_root -> info << " ";
 }
 
 int main() {
@@ -94,10 +109,10 @@ int main() {
     cout << "The level order traversal is : ";
     bt.level_order_traversal();
     cout << "\nThe preorder traversal is : ";
-    bt.pre_order_traversal();
+    bt.pre_order_traversal (bt.root);
     cout << "\nThe inorder traversal is : ";
-    bt.in_order_traversal();
+    bt.in_order_traversal (bt.root);
     cout << "\nThe postorder traversal is : ";
-    bt.post_order_traversal();
+    bt.post_order_traversal (bt.root);
     return 0;
 }
