@@ -70,6 +70,7 @@ void convertor (char infix[50], char postfix[50]) {
             ctr++;
         }
     }
+    postfix[ctr] = '\0';
 }
 
 int main() {
