@@ -112,11 +112,129 @@ void TBST :: insert ( int ele ) {
 }
 
 void TBST :: remove ( int ele ) {
-
+    if ( head -> lc == head ) {
+        cout << "The tree is empty!!\n";
+        return;
+    }
+    Node* parent = head;
+    Node* curr = parent -> lc;
+    while ( curr != NULL && curr -> info != ele ) {
+        parent = curr;
+        if ( curr -> info > ele ) {
+            if ( curr -> lt == false ) {
+                curr = curr -> lc;
+            }
+            else {
+                curr = NULL;
+            }
+        }
+        else {
+            if ( curr -> rt == false ) {
+                curr = curr -> rc;
+            }
+            else {
+                curr = NULL;
+            }
+        }
+    }
+    if ( curr == NULL ) {
+        cout << "Sorry! Node to be deleted not found!!\n";
+        return;
+    }
+    if ( curr -> lt == true && curr -> rt == true ) {       // the node to be deleted is a leaf node    
+        if ( curr == head -> lc ) {     // node to be deleted is root node
+            head -> lc = head;
+            delete curr;
+            return;
+        }
+        if ( curr == parent -> lc ) {
+            parent -> lc = curr -> lc;
+            parent -> lt = true;
+        }
+        else if ( curr == parent -> rc ) {
+            parent -> rc = curr -> rc;
+            parent -> rt = true;
+        }
+        delete curr;
+    }
+    else if ( curr -> lt == true || curr -> rt == true ) {     // the node to be deleted has 1 child
+        Node *subtree;
+        if ( curr -> lt == false ) {      // curr has a left child / subtree
+            subtree = curr -> lc;
+        }
+        else {                            // curr has a right child / subtree
+            subtree = curr -> rc;
+        }
+        if ( curr == parent -> lc ) {     // curr is the left child of the parent
+            parent -> lc = subtree;
+        }
+        else {
+            parent -> rc = subtree;       // curr is the right child of the parent
+        }
+        Node *insuc = curr -> rc, *inpred = curr -> lc;
+        if ( subtree == curr -> rc ) {
+            while ( insuc -> lt == false ) {
+                insuc = insuc -> lc;
+            }
+        }
+        if ( subtree == curr -> lc ) {
+            while ( inpred -> rt == false ) {
+                inpred = inpred -> rc;
+            }
+        }
+        if ( subtree == curr -> lc ) {
+            inpred -> rc = insuc;   
+            inpred -> rt = true;
+        }
+        else {
+            insuc -> lc = inpred;
+            insuc -> lt = true;
+        }
+        delete curr;
+    }
+    else {
+        Node* in_suc = curr -> rc;
+        Node* in_suc_par = curr;                
+        while ( in_suc -> lt == false ) {             // inorder successor of the node to be deleted
+            in_suc_par = in_suc;
+            in_suc = in_suc -> lc;
+        }
+        int infos = in_suc -> info;
+        remove (infos);
+        curr -> info = infos;
+    }
 }
 
 void TBST :: search ( int ele ) {
-
+    if ( head -> lc == head ) {
+        cout << "The tree is empty!!\n";
+        return;
+    }
+    Node* curr = head -> lc;
+    while ( curr != NULL && curr -> info != ele ) {
+        if ( curr -> info > ele ) {
+            if ( curr -> lt == false ) {
+                curr = curr -> lc;
+            }
+            else {
+                curr = NULL;
+            }
+        }
+        else {
+            if ( curr -> rt == false ) {
+                curr = curr -> rc;
+            }
+            else {
+                curr = NULL;
+            }
+        }
+    }
+    if ( curr == NULL ) {
+        cout << "Sorry! Element not found!" << endl;
+    }
+    else {
+        cout << "Wohoo! Element found." << endl;
+    }
 }
 
 int main() {
