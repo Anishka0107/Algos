@@ -85,13 +85,13 @@ int BinarySearchTree :: remove (int ele) {
 		else {
 			curr = curr -> rc;
 		}
-	}
+	}   
 	if (curr == NULL) {
 		cout << "Element to be deleted not found!!\n";
 		return -1;
 	}
 	if (curr -> lc == NULL && curr -> rc == NULL) {     // the node to be deleted is a leaf node
-		if (curr == root) {
+        if (curr == root) {
 			root = NULL;
 		}
 		else if (curr == parent -> lc) {
@@ -100,27 +100,9 @@ int BinarySearchTree :: remove (int ele) {
 		else {
 			parent -> rc = NULL;
 		}
-		cout << "Deleted element " << ele << endl;
 		delete curr;
 	}
-	else if (curr -> lc != NULL && curr -> rc !=NULL) {     // the node to be deleted has 2 children
-		Node *ios = curr -> rc;    // will store inorder successor of the node to be deleted
-		Node *iospar = NULL;
-		while (ios -> lc != NULL) {
-			iospar = ios;
-			ios = ios -> lc;
-		}
-		cout << "Deleted element " << ele << endl;
-		curr -> info = ios -> info;
-		if (ios -> rc != NULL) {
-			iospar -> lc = ios -> rc;
-		}
-		else {
-			iospar -> lc = NULL;
-		}
-		delete ios;
-	}
-	else {                    // the node to be deleted has 1 child
+	else if ((curr -> lc == NULL && curr -> rc != NULL) || (curr -> lc != NULL && curr -> rc == NULL)) {   // the node to be deleted has 1 child
 		Node *child;
 		if (curr -> lc != NULL) {
 			child = curr -> lc;
@@ -137,9 +119,17 @@ int BinarySearchTree :: remove (int ele) {
 		else {
 			parent -> rc = child;
 		}
-		cout << "Deleted element " << ele << endl;
 		delete curr;
 	}
+    else {     // the node to be deleted has 2 children
+		Node *ios = curr -> rc;    // will store inorder successor of the node to be deleted
+		while (ios -> lc != NULL) {
+			ios = ios -> lc;
+		}
+		int infos = ios -> info;
+        remove (infos);
+        curr -> info = infos;
+    }
 }
 
 void BinarySearchTree :: traverse (Node* curr_root) {
