@@ -57,7 +57,7 @@ bool Trie :: remove (string s, Node* curr, int curr_depth) {
                 bool no_children = true;
                 for (int i = 0; i < SIZE; i++) {
                     if (curr -> children[i] != NULL) {
-                        no_children = true;
+                        no_children = false;
                         break;
                     }
                 }
