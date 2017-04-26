@@ -123,9 +123,8 @@ int BinarySearchTree :: remove (int ele) {
 	}
     else {     // the node to be deleted has 2 children
 		Node *ios = curr -> rc;    // will store inorder successor of the node to be deleted
-		while (ios -> lc != NULL) {
+		while (ios -> lc != NULL)
 			ios = ios -> lc;
-		}
 		int infos = ios -> info;
         remove (infos);
         curr -> info = infos;

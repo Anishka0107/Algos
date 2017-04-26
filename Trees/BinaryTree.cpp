@@ -68,7 +68,7 @@ void BinaryTree :: level_order_traversal() {
 	    insert(ex);
 	}
 	if (front -> x -> rc != NULL) {
-            ex = new Extra;
+        ex = new Extra;
 	    ex -> x= front -> x -> rc;
 	    insert(ex);
 	}
