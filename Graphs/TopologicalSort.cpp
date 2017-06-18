@@ -49,7 +49,7 @@ int main() {
     int v, e, s, d;
     // Enter number of vertices
     // Enter number of edges
-    // Enter the edges in form of source-destination pairs for the directed graphs
+    // Enter the edges in form of source-destination pairs for the directed graph
     cin >> v >> e;
     Graph g (v);
     for (int i = 0; i < e; i++) {

@@ -2,10 +2,10 @@
 using namespace std;
 
 int knapsack (int w, int wt[], int val[], int W, int i, int n) {
-    if (w+wt[i] > W)
-        return knapsack (w, wt, val, W, i+1, n);
     if (i == n)
         return 0;
+    if (w+wt[i] > W)
+        return knapsack (w, wt, val, W, i+1, n);
     return max (val[i] + knapsack (w+wt[i], wt, val, W, i+1, n), knapsack (w, wt, val, W, i+1, n));
 }
 
