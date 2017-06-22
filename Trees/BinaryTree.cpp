@@ -28,7 +28,6 @@ class BinaryTree {
 	int max_width();
 	int search(Node*, int);
 	int ancestors(Node*,int);
-	int diameter();
 	void print_level(Node*,int);
 };
 
@@ -167,12 +166,6 @@ int BinaryTree :: ancestors (Node* curr_root, int ele) {
     return 0;
 }
 
-int BinaryTree :: diameter () {
-    int left = depth (root -> lc);
-    int right = depth (root -> rc);
-    return left + right -1;
-}
-
 void BinaryTree :: print_level (Node* curr_root, int level) {
     if (curr_root == NULL) {
         return;
@@ -222,7 +215,6 @@ int main() {
     else {
         cout << "Element not found!!";
     }
-    cout << "\nThe diameter of the binary tree is : " << bt.diameter ();
     cout << "\nEnter a level. It's nodes will be printed : ";
     cin >> k;
     if (k > bt.depth (bt.root)) {
@@ -231,6 +223,5 @@ int main() {
     else {
         bt.print_level (bt.root, k);
     }
-
     return 0;
 }
