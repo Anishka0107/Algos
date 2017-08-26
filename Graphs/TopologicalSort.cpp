@@ -6,6 +6,7 @@ using namespace std;
 // for directed acyclic graphs only
 // it has atleast 1 vertex with indegree 0 and 1 with outdegree 0
 // one simple practical application is while building packages, we have to resolve dependencies
+// helpful in generating the lexicographical order if words of the dictionary are given in the same order
 class Graph {
         vector<vector<int>> adjlst;
         vector<bool> visited;

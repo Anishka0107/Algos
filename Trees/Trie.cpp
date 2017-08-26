@@ -41,19 +41,17 @@ bool Trie :: remove (string s, Node* curr, int curr_depth) {
             if (curr -> is_leaf) {
                 curr -> is_leaf = false;
                 for (int i = 0; i < SIZE; i++) {
-                    if (curr -> children[i] != NULL) {
-                        curr = NULL;
-                        return true;
-                    }
-                    return false;
-                }        
+                    if (curr -> children[i] != NULL)
+                        return false;
+                }    
+                return true;
             }
         }
         else {
             int idx = (int)s[curr_depth] - (int)'a';
             if (remove(s, curr -> children[idx], curr_depth + 1)) {
-                curr -> children[idx] = NULL;
                 delete curr -> children[idx];
+                curr->children[idx] = NULL;
                 bool no_children = true;
                 for (int i = 0; i < SIZE; i++) {
                     if (curr -> children[i] != NULL) {
