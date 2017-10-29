@@ -1,7 +1,7 @@
 #include<iostream.h>
 #include<conio.h>
 #include<stdlib.h>
-//Turbo
+// Please note that this works only in turbo C++
 class Node{
 public:
 int info;
