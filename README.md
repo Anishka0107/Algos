@@ -1,5 +1,5 @@
 # DS-and-Algos
-Basic data structures and algorithms implementation
+Basic data structures and algorithms implementation.
 
-**Still doing**
+***Still doing***
 
